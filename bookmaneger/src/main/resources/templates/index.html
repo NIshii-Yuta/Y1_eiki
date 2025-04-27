@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Book List</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f4f4f4;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Book List</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>タイトル</th>
+                <th>著者</th>
+                <th>出版社</th>
+                <th>出版日</th>
+                <th>在庫数</th>
+            </tr>
+        </thead>
+        <tbody id="book-table-body">
+            <!-- JavaScriptでデータを挿入 -->
+        </tbody>
+    </table>
+
+    <script>
+        fetch('/api/books')
+            .then(response => response.json())
+            .then(books => {
+                let tbody = document.getElementById('book-table-body');
+                books.forEach(book => {
+                    let row = `<tr>
+                        <td>${book.id}</td>
+                        <td>${book.title}</td>
+                        <td>${book.author}</td>
+                        <td>${book.publisher}</td>
+                        <td>${book.publishedDate}</td>
+                        <td>${book.stock}</td>
+                    </tr>`;
+                    tbody.innerHTML += row;
+                });
+            })
+            .catch(error => console.error('Error fetching books:', error));
+    </script>
+
+</body>
+</html>
