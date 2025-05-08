@@ -1,22 +1,15 @@
 package com.college.yi.bookmaneger.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-
-import com.college.yi.bookmaneger.service.BookService;
+import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
-//@RequestMapping("/api/books")
+@RequestMapping("/books")
 public class BookController {
     
-    private final BookService bookService;
-    
-    
-    public BookController(BookService bookService) {
-        this.bookService = bookService;
-    }
-    
-    @GetMapping("/books")
-    public String showBookPage() {
+    @GetMapping
+    public String showBookPage(Model model) {
         return "index";
     }
 
