@@ -14,8 +14,7 @@
   <insert id="insert"
           parameterType="com.college.yi.bookmaneger.entity.BookEntity"
           useGeneratedKeys="true"
-          keyProperty="id"
-          >
+          keyProperty="id">
     INSERT INTO books
       (title, author, publisher, published_date, stock)
     VALUES
